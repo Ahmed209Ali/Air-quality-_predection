@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e1e1e, #878c96); /* خلفية متدرجة */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #898585;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 30px;
+            color: #2d3436;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #2d3436;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #dfe4ea;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0984e3;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            padding: 12px;
+            background-color: #00b894;
+            color: #ffffff;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #525f5c;
+        }
+
+        .prediction, .error {
+            font-size: 22px;
+            margin-top: 20px;
+        }
+
+        .prediction {
+            color: #05e0b4;
+        }
+
+        .error {
+            color: #e74c3c;
+        }
+
+        .model-accuracy {
+            font-size: 18px;
+            color: #98b0b8;
+            margin-top: 30px;
+        }
+
+        .footer {
+            font-size: 16px;
+            color: #b2bec3;
+            margin-top: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Model Prediction</h1>
+        <form action="/predict" method="POST">
+            
+            <label for="temperature">Temperature:</label>
+            <input type="text" name="temperature" placeholder="Enter temperature" value="0" required>
+
+            <label for="humidity">Humidity:</label>
+            <input type="text" name="humidity" placeholder="Enter humidity" value="0" required>
+
+            <label for="pm25">PM2.5:</label>
+            <input type="text" name="pm25" placeholder="Enter PM2.5 level" value="0" required>
+
+            <label for="pm10">PM10:</label>
+            <input type="text" name="pm10" placeholder="Enter PM10 level" value="0" required>
+
+            <label for="no2">NO2:</label>
+            <input type="text" name="no2" placeholder="Enter NO2 level" value="0" required>
+
+            <label for="so2">SO2:</label>
+            <input type="text" name="so2" placeholder="Enter SO2 level" value="0" required>
+
+            <label for="co">CO:</label>
+            <input type="text" name="co" placeholder="Enter CO level" value="0" required>
+
+            <label for="proximity">Proximity:</label>
+            <input type="text" name="proximity" placeholder="Enter proximity" value="0" required>
+
+            <label for="population">Population:</label>
+            <input type="text" name="population" placeholder="Enter population size" value="0" required>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        <div class="model-accuracy">
+            <h2>Model Accuracy: {{ accuracy }}%</h2>
+        </div>
+
+        {% if prediction %}
+            <h3 class="prediction">Predicted Air Quality: {{ prediction }}</h3>
+        {% elif error %}
+            <h3 class="error">Error: {{ error }}</h3>
+        {% endif %}
+
+        <div class="footer">
+            <p>&copy; Ahmed Ali && Ahmed Amr</p>
+        </div>
+    </div>
+</body>
+</html>
